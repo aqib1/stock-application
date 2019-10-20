@@ -1,0 +1,76 @@
+/***
+* Eureka, pvt ltd
+* intial schema for admin stock - application
+*
+* 
+*****/
+
+
+CREATE TABLE `Application` ( `app_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `app_name` TEXT NOT NULL );
+
+Create table Menus(menu_id integer primary key autoincrement not null, menu_title text not null);
+
+CREATE TABLE screen(screen_id integer primary key autoincrement not null, screen_title text not null);
+
+CREATE TABLE contents(content_id integer primary key autoincrement not null, key string not null unique, content_value text not null);
+
+CREATE TABLE screen_menus_relation(id integer primary key autoincrement not null, menu_id integer not null, screen_id not null,
+foreign key (menu_id) references Menus(menu_id),
+foreign key (screen_id) references screen(screen_id));
+
+CREATE TABLE screen_content_relation(id integer primary key autoincrement not null, screen_id integer not null, content_id integer not null,
+foreign key (screen_id) references screen(screen_id),
+foreign key (content_id) references contents(content_id)
+);
+
+
+
+Insert into Menus 
+(menu_title)
+ Values("Products","Clients","Sales","Profit","Reporting","Settings","Add Products","Add Clients","Out of stocks");
+ 
+ 
+Drop table screen_menus_relation;
+Drop table menus;
+
+Create table Menus(menu_id integer primary key autoincrement not null, menu_title text not null, menu_key text not null unique);
+
+CREATE TABLE screen_menus_relation(id integer primary key autoincrement not null, menu_id integer not null, screen_id not null,
+foreign key (menu_id) references Menus(menu_id),
+foreign key (screen_id) references screen(screen_id));
+
+Insert into Menus 
+(menu_title,menu_key)
+ Values("Products","prod_01");
+ Insert into Menus 
+(menu_title,menu_key)
+ Values("Clients","clnts_01");
+ Insert into Menus 
+(menu_title,menu_key)
+ Values("Sales","sales_01"); 
+  Insert into Menus 
+(menu_title,menu_key)
+ Values("Profit","prft_01"); 
+ 
+  Insert into Menus 
+(menu_title,menu_key)
+ Values("Reporting","rprtng_01"); 
+ 
+  Insert into Menus 
+(menu_title,menu_key)
+ Values("Settings","setings_01"); 
+ 
+  Insert into Menus 
+(menu_title,menu_key)
+ Values("Add Products","adprodcts_01");
+ 
+  Insert into Menus 
+(menu_title,menu_key)
+ Values("Add Clients","adclnts_01");
+ 
+  Insert into Menus 
+(menu_title,menu_key)
+ Values("Out of stocks","otOfStoks_01");
+ 
+ 
+select * from menus;
